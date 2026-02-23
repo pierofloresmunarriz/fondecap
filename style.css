@@ -210,29 +210,14 @@ img {
    ============================================= */
 .hero {
   position: relative;
-  min-height: 520px;
+  min-height: 560px;
   display: flex;
   align-items: center;
   padding: 80px 20px;
   background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0.06) 100%
-    ),
-    linear-gradient(135deg, #808080 0%, #6b6b6b 50%, #808080 100%);
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.7) 100%),
+    url("img/inicio.png") center center / cover no-repeat;
   overflow: hidden;
-}
-
-/* Patrón decorativo SVG de fondo */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect x='10' y='10' width='80' height='100' fill='none' stroke='%23888' stroke-width='1.5'/%3E%3Crect x='100' y='30' width='70' height='80' fill='none' stroke='%23888' stroke-width='1.5'/%3E%3Cline x1='20' y1='50' x2='80' y2='50' stroke='%23888' stroke-width='1'/%3E%3Cline x1='20' y1='70' x2='80' y2='70' stroke='%23888' stroke-width='1'/%3E%3Cpolygon points='165,10 180,50 150,50' fill='none' stroke='%23888' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  opacity: 0.25;
-  pointer-events: none;
 }
 
 .hero-overlay {
@@ -1024,6 +1009,149 @@ img {
 
 .footer-bottom strong {
   color: rgba(255, 255, 255, 0.65);
+}
+
+/* =============================================
+   PORTAL DE POSTULACIÓN
+   ============================================= */
+.fase-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.fase-number {
+  width: 36px;
+  height: 36px;
+  background: var(--red);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.fase-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+
+.fase-subtitle {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.postulacion-grid {
+  gap: 20px;
+}
+
+.post-card {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.post-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post-num {
+  width: 30px;
+  height: 30px;
+  background: var(--red);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.post-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.post-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.post-docs {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  flex: 1;
+}
+
+.post-docs .docs-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8px;
+}
+
+.post-docs ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.post-docs ul li {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-block {
+  width: 100%;
+  justify-content: center;
+}
+
+.plazo-bar {
+  margin-top: 32px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.plazo-bar strong {
+  color: var(--white);
+}
+
+.fase-info-bar {
+  background: rgba(255,255,255,0.05);
+  border-left: 3px solid var(--red);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 18px;
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+}
+
+.fase-info-bar strong {
+  color: var(--white);
 }
 
 /* =============================================
