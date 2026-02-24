@@ -1146,6 +1146,16 @@ img {
   color: var(--white);
 }
 
+.nav-logos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.nav-brand-text {
+  padding: 0;
+}
+
 /* =============================================
    RESPONSIVE TWEAKS
    ============================================= */
