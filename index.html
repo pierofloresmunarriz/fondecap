@@ -82,6 +82,37 @@
       </div>
     </section>
 
+    <!-- ===== SECCIÓN RESULTADOS ===== -->
+    <section class="section-resultados">
+      <div class="container resultados-inner">
+        <div class="resultados-left">
+          <span class="resultados-badge"
+            >RESULTADOS FINALES — 11 de abril 2026</span
+          >
+          <h2 class="resultados-title">
+            ¡Ya están disponibles los resultados!
+          </h2>
+          <p class="resultados-desc">
+            Ingresa tu DNI en el portal para conocer si fuiste seleccionado/a
+            para el Programa de Becas FONDECAPCC.
+          </p>
+        </div>
+        <div class="resultados-right">
+          <a
+            href="https://lookerstudio.google.com/reporting/95e26141-4369-4685-a3da-a55d4d6b3b04"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-resultados"
+          >
+            Ver mis resultados
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== SOBRE EL PROGRAMA ===== -->
     <section id="sobre" class="section section-gray">
       <div class="container">
@@ -531,6 +562,7 @@
             Verificar mi postulación
           </a>
         </div>
+
         <!-- Fase 2 -->
         <div class="fase-header" style="margin-top: 40px">
           <span class="fase-number">2</span>
@@ -540,8 +572,8 @@
           </div>
         </div>
         <div class="fase-info-bar">
-          <strong>Fechas:</strong> 30 de marzo al 01 de abril 2026 &nbsp;·&nbsp; ⏱
-          <strong>Duración:</strong> 30-45 minutos<br />
+          <strong>Fechas:</strong> 30 de marzo al 01 de abril 2026 &nbsp;·&nbsp;
+          ⏱ <strong>Duración:</strong> 30-45 minutos<br />
           <strong>Formato:</strong> Virtual
         </div>
 
@@ -560,6 +592,19 @@
           <strong>Publicación:</strong> 11 de abril 2026<br />
           Los seleccionados recibirán comunicación para la firma de convenio y
           matrícula.
+        </div>
+        <div style="text-align: center; margin-top: 20px">
+          <a
+            href="https://lookerstudio.google.com/reporting/95e26141-4369-4685-a3da-a55d4d6b3b04"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-resultados-fase"
+          >
+            Ver Resultados Finales
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
@@ -714,6 +759,121 @@
         background: #d2292a;
         color: #fff;
       }
+
+      /* ===== SECCIÓN RESULTADOS ===== */
+      .section-resultados {
+        background: linear-gradient(
+          135deg,
+          #1a472a 0%,
+          #2d6a4f 60%,
+          #1a472a 100%
+        );
+        padding: 48px 0;
+        border-top: 4px solid #52b788;
+        border-bottom: 4px solid #52b788;
+      }
+      .resultados-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+      .resultados-left {
+        flex: 1;
+        min-width: 260px;
+      }
+      .resultados-badge {
+        display: inline-block;
+        background: rgba(82, 183, 136, 0.2);
+        color: #74c69d;
+        border: 1px solid #52b788;
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+        font-family: "Montserrat", sans-serif;
+      }
+      .resultados-title {
+        color: #fff;
+        font-size: 28px;
+        font-weight: 800;
+        font-family: "Montserrat", sans-serif;
+        margin: 0 0 10px;
+      }
+      .resultados-desc {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 15px;
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+      }
+      .resultados-right {
+        flex-shrink: 0;
+      }
+      .btn-resultados {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #52b788;
+        color: #fff;
+        padding: 16px 32px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        box-shadow: 0 6px 20px rgba(82, 183, 136, 0.4);
+      }
+      .btn-resultados:hover {
+        background: #40916c;
+        transform: translateY(-2px);
+      }
+
+      /* ===== BOTÓN RESULTADOS EN FASE 3 ===== */
+      .btn-resultados-fase {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #52b788;
+        color: #fff;
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        box-shadow: 0 6px 20px rgba(82, 183, 136, 0.3);
+      }
+      .btn-resultados-fase:hover {
+        background: #40916c;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 640px) {
+        .resultados-inner {
+          flex-direction: column;
+          text-align: center;
+        }
+        .resultados-title {
+          font-size: 22px;
+        }
+        .btn-resultados {
+          width: 100%;
+          justify-content: center;
+        }
+        .btn-resultados-fase {
+          width: 100%;
+          justify-content: center;
+        }
+      }
     </style>
 
     <script>
@@ -757,7 +917,6 @@
     </script>
 
     <!-- ===== BOTÓN FLOTANTE WHATSAPP ===== -->
-
     <a
       href="https://wa.me/51962323888?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20Programa%20de%20Becas%20FONDECAPCC"
       target="_blank"
