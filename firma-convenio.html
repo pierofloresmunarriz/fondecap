@@ -2082,6 +2082,10 @@
               <span class="value" id="successDNI">—</span>
             </div>
             <div class="success-detail-row">
+              <span class="label">Nombre</span>
+              <span class="value" id="successNombre">—</span>
+            </div>
+            <div class="success-detail-row">
               <span class="label">Convenio firmado</span>
               <span class="value green" id="successTs1">—</span>
             </div>
@@ -2105,16 +2109,64 @@
     <!-- /main -->
 
     <script>
+      const BECARIOS = {
+        71100379: "Aaron Josue Matute Escobedo",
+        46064667: "Albert Adrian Guerrero Zapata",
+        41249117: "Alberto Sanchez Fernandez",
+        44633264: "Alexander Berrocal Salcedo",
+        75937415: "Alindor Portal Casquin",
+        74954081: "Álvaro Pucho Pucho",
+        42523462: "Belisario Lima Sullca",
+        61412254: "Brando Javier Iñape Castillo",
+        48073422: "Carlos Andrés Atoche Botton",
+        71353485: "Charles Lima Encarnacion",
+        44353126: "Denis Junior Saucedo Hernández",
+        42438832: "Edgar Alfredo Barrientos Urbano",
+        45022392: "Edgar Wilder Ponce Sobero",
+        9364719: "Edgard Miguel Zamora Irrazabal",
+        45317389: "Edson Flores Santoyo",
+        44628553: "Edwin Cristhian Ortega Vivar",
+        75781356: "Emerson Huaman Chavez",
+        72917298: "Enrique Neptali Nuñez Flores",
+        61123969: "Fabian Alberto Sanchez Corrales",
+        48407793: "Fidel Gallegos Ramos",
+        74379918: "Flor Yesenia Mamani Barrionuevo",
+        42013163: "Fredhy Alberto Malpartida Montecillo",
+        72907953: "Gerson Fharid Torres Llantoy",
+        47129727: "Grider Jarvin Alvarado Soto",
+        48111233: "Harold Smith Cruz Castillo",
+        70509536: "Heberth Eduardo Espinoza Chiclla",
+        43871643: "Hilda Elizares Pilpe",
+        41431806: "Jimmy Rico Bazan",
+        72611040: "Job Cusquisiban Torres",
+        74128360: "Juan Anthony Cueva Moreno",
+        76287516: "Juan Carlos Casimiro Pascual",
+        71756475: "Juan Carlos Llaullipoma Carhuamanta",
+        71541786: "Kiara Estefany Karolina Espino Solier",
+        80502545: "Lizandro Raul Correa Baldeon",
+        44174866: "Luis Enrique Asmad Gerónimo",
+        47631507: "Luis Jesús Pinedo Camilo",
+        46495453: "Marino Melendez Lopez",
+        72428086: "Michael Castro Vilchez",
+        45040109: "Mike Esteban Villanueva Fernandez",
+        72232881: "Wilber Huillca Sueldo",
+        73581729: "Wily Arizaca Choquehuayta",
+        72855428: "Yeferson Yohan Ayala Espinoza",
+        75987723: "Yerson Henry Ayamamani Gonzales",
+        45489461: "Yinmy Puerta Arone",
+        76445300: "Yonathan Smith Rivera Alama",
+      };
       // ── Estado global ──
       const state = {
         dni: "",
+        nombre: "",
         ts_convenio: "",
         ts_reglamento: "",
       };
 
       // URL del Apps Script — REEMPLAZAR con tu URL desplegada
       const APPS_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbxR8KRQQGQDEUOIWQuO60Nkg3PQh-IzO3mVcBvKIk7uZyLJAAr_8px3y3vahYN-NADfAQ/exec";
+        "https://script.google.com/macros/s/AKfycby5dxRv3jO4BGW-Z0UVIzppXaf0zF3y-dLsBQd9h6sul16qPH-WnJGey_8BY0GzzslT_A/exec";
 
       // ── Navegación ──
       function goTo(step) {
@@ -2134,18 +2186,33 @@
         const val = document.getElementById("dniInput").value.trim();
         const err = document.getElementById("dniError");
         const inp = document.getElementById("dniInput");
-        if (!/^\d{8}$/.test(val)) {
+
+        if (!/^\d{7,8}$/.test(val)) {
           inp.classList.add("error");
+          err.textContent = "Ingresa un DNI válido de 8 dígitos.";
           err.classList.add("show");
           return;
         }
+
+        const nombre = BECARIOS[val];
+        if (!nombre) {
+          inp.classList.add("error");
+          err.textContent =
+            "Este DNI no se encuentra en la lista de becarios seleccionados.";
+          err.classList.add("show");
+          return;
+        }
+
         inp.classList.remove("error");
         err.classList.remove("show");
         state.dni = val;
+        state.nombre = nombre;
+
         document.getElementById("dniBadge1").textContent = val;
         document.getElementById("dniBadge2").textContent = val;
         document.getElementById("dniConvenio").textContent = val;
         document.getElementById("successDNI").textContent = val;
+        document.getElementById("successNombre").textContent = nombre;
         goTo(1);
       }
 
@@ -2225,6 +2292,7 @@
 
         const payload = {
           dni: state.dni,
+          nombre: state.nombre,
           ts_convenio: state.ts_convenio,
           ts_reglamento: state.ts_reglamento,
           ts_envio: new Date().toISOString(),
