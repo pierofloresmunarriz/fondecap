@@ -1322,3 +1322,63 @@ img {
     text-align: center;
   }
 }
+
+/* =============================================
+   BTN CAREER INFO
+   ============================================= */
+.btn-career-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 9px 16px;
+  background: transparent;
+  border: 1.5px solid var(--red);
+  color: var(--red);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font);
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  width: 100%;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.btn-career-info:hover {
+  background: var(--red);
+  color: var(--white);
+}
+
+/* =============================================
+   BTN RESULTADOS FASE
+   ============================================= */
+.btn-resultados-fase {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #52b788;
+  color: var(--white);
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font);
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    transform 0.15s;
+  box-shadow: 0 6px 20px rgba(82, 183, 136, 0.3);
+}
+.btn-resultados-fase:hover {
+  background: #40916c;
+  transform: translateY(-2px);
+}
+@media (max-width: 640px) {
+  .btn-resultados-fase {
+    width: 100%;
+    justify-content: center;
+  }
+}

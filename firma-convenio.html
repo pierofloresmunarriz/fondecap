@@ -9,663 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --red: #d2292a;
-        --red-dark: #a81f20;
-        --green: #2d6a4f;
-        --green-light: #52b788;
-        --gray-50: #f9fafb;
-        --gray-100: #f3f4f6;
-        --gray-200: #e5e7eb;
-        --gray-400: #9ca3af;
-        --gray-600: #4b5563;
-        --gray-800: #1f2937;
-        --gray-900: #111827;
-        --white: #ffffff;
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: "Montserrat", sans-serif;
-        background: var(--gray-50);
-        color: var(--gray-800);
-        min-height: 100vh;
-      }
-
-      /* ── HEADER ── */
-      .header {
-        background: var(--white);
-        border-bottom: 3px solid var(--red);
-        padding: 16px 24px;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-      }
-      .header-logo {
-        width: 38px;
-        height: 38px;
-        background: var(--red);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .header-title {
-        font-size: 14px;
-        font-weight: 700;
-        color: var(--gray-900);
-        line-height: 1.3;
-      }
-      .header-title span {
-        display: block;
-        font-size: 11px;
-        font-weight: 500;
-        color: var(--gray-400);
-        margin-top: 1px;
-      }
-
-      .doc-scroll ol {
-        margin: 8px 0 12px 0;
-        padding-left: 0;
-        list-style: none;
-        counter-reset: item;
-      }
-      .doc-scroll ol li {
-        counter-increment: item;
-        display: table;
-        margin-bottom: 6px;
-        text-align: justify;
-      }
-      .doc-scroll ol li::before {
-        content: counter(item) ".";
-        display: table-cell;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: 500;
-      }
-
-      /* ── PROGRESS BAR ── */
-      .progress-wrap {
-        background: var(--white);
-        border-bottom: 1px solid var(--gray-200);
-        padding: 20px 24px;
-      }
-      .progress-steps {
-        display: flex;
-        align-items: center;
-        max-width: 600px;
-        margin: 0 auto;
-        gap: 0;
-      }
-      .step {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-        flex: 1;
-        position: relative;
-      }
-      .step:not(:last-child)::after {
-        content: "";
-        position: absolute;
-        top: 18px;
-        left: 50%;
-        width: 100%;
-        height: 2px;
-        background: var(--gray-200);
-        z-index: 0;
-        transition: background 0.4s;
-      }
-      .step.done:not(:last-child)::after {
-        background: var(--green-light);
-      }
-      .step-circle {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        border: 2px solid var(--gray-200);
-        background: var(--white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--gray-400);
-        position: relative;
-        z-index: 1;
-        transition: all 0.3s;
-      }
-      .step.active .step-circle {
-        border-color: var(--red);
-        background: var(--red);
-        color: var(--white);
-      }
-      .step.done .step-circle {
-        border-color: var(--green-light);
-        background: var(--green-light);
-        color: var(--white);
-      }
-      .step-label {
-        font-size: 10px;
-        font-weight: 600;
-        color: var(--gray-400);
-        text-align: center;
-        letter-spacing: 0.3px;
-        text-transform: uppercase;
-      }
-      .step.active .step-label {
-        color: var(--red);
-      }
-      .step.done .step-label {
-        color: var(--green);
-      }
-
-      /* ── MAIN ── */
-      .main {
-        max-width: 780px;
-        margin: 0 auto;
-        padding: 32px 16px 60px;
-      }
-
-      /* ── DNI STEP ── */
-      .dni-card {
-        background: var(--white);
-        border-radius: 16px;
-        padding: 48px 40px;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-        text-align: center;
-      }
-      .dni-icon {
-        width: 72px;
-        height: 72px;
-        background: #fef2f2;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 24px;
-      }
-      .dni-card h2 {
-        font-size: 24px;
-        font-weight: 800;
-        color: var(--gray-900);
-        margin-bottom: 8px;
-      }
-      .dni-card p {
-        font-size: 14px;
-        color: var(--gray-600);
-        margin-bottom: 32px;
-        line-height: 1.6;
-      }
-      .dni-input-wrap {
-        position: relative;
-        max-width: 320px;
-        margin: 0 auto 12px;
-      }
-      .dni-input {
-        width: 100%;
-        padding: 14px 20px;
-        font-size: 18px;
-        font-weight: 700;
-        font-family: "Montserrat", sans-serif;
-        border: 2px solid var(--gray-200);
-        border-radius: 10px;
-        text-align: center;
-        letter-spacing: 4px;
-        outline: none;
-        transition: border-color 0.2s;
-      }
-      .dni-input:focus {
-        border-color: var(--red);
-      }
-      .dni-input.error {
-        border-color: #ef4444;
-      }
-      .error-msg {
-        font-size: 12px;
-        color: #ef4444;
-        margin-top: 6px;
-        display: none;
-      }
-      .error-msg.show {
-        display: block;
-      }
-
-      /* ── DOCUMENTO CARD ── */
-      .doc-card {
-        background: var(--white);
-        border-radius: 16px;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-        overflow: hidden;
-      }
-      .doc-header {
-        background: var(--red);
-        padding: 24px 32px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-      .doc-header-icon {
-        width: 48px;
-        height: 48px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-      .doc-header-text h2 {
-        font-size: 18px;
-        font-weight: 800;
-        color: var(--white);
-      }
-      .doc-header-text p {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.75);
-        margin-top: 3px;
-      }
-
-      .doc-body {
-        padding: 32px;
-      }
-
-      .becario-info {
-        background: var(--gray-50);
-        border: 1px solid var(--gray-200);
-        border-radius: 10px;
-        padding: 14px 20px;
-        margin-bottom: 24px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 13px;
-      }
-      .becario-info strong {
-        color: var(--gray-900);
-      }
-      .becario-info span {
-        color: var(--gray-600);
-      }
-      .dni-badge {
-        background: var(--red);
-        color: var(--white);
-        font-size: 11px;
-        font-weight: 700;
-        padding: 3px 10px;
-        border-radius: 20px;
-        letter-spacing: 1px;
-      }
-
-      /* ── DOCUMENTO SCROLL ── */
-      .doc-scroll-wrap {
-        position: relative;
-        margin-bottom: 24px;
-      }
-      .doc-scroll {
-        height: 420px;
-        overflow-y: auto;
-        border: 1px solid var(--gray-200);
-        border-radius: 10px;
-        padding: 28px 32px;
-        font-family: "Lora", serif;
-        font-size: 13.5px;
-        line-height: 1.85;
-        color: var(--gray-800);
-        background: #fffdf9;
-        scroll-behavior: smooth;
-      }
-      .doc-scroll::-webkit-scrollbar {
-        width: 6px;
-      }
-      .doc-scroll::-webkit-scrollbar-track {
-        background: var(--gray-100);
-        border-radius: 3px;
-      }
-      .doc-scroll::-webkit-scrollbar-thumb {
-        background: var(--gray-400);
-        border-radius: 3px;
-      }
-
-      .doc-scroll h1 {
-        font-family: "Montserrat", sans-serif;
-        font-size: 15px;
-        font-weight: 800;
-        color: var(--red);
-        text-align: center;
-        margin-bottom: 24px;
-        letter-spacing: 0.5px;
-      }
-      .doc-scroll h2 {
-        font-family: "Montserrat", sans-serif;
-        font-size: 12px;
-        font-weight: 800;
-        color: var(--gray-900);
-        margin: 20px 0 8px;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-      }
-      .doc-scroll h3 {
-        font-family: "Montserrat", sans-serif;
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--gray-700);
-        margin: 16px 0 6px;
-      }
-      .doc-scroll p {
-        margin-bottom: 10px;
-      }
-      .doc-scroll ul {
-        margin: 8px 0 12px 20px;
-      }
-      .doc-scroll ul li {
-        margin-bottom: 4px;
-      }
-
-      .scroll-indicator {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 60px;
-        background: linear-gradient(
-          to top,
-          rgba(255, 253, 249, 1),
-          rgba(255, 253, 249, 0)
-        );
-        border-radius: 0 0 10px 10px;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        padding-bottom: 10px;
-        pointer-events: none;
-        transition: opacity 0.3s;
-      }
-      .scroll-indicator.hidden {
-        opacity: 0;
-      }
-      .scroll-indicator span {
-        font-size: 11px;
-        font-weight: 600;
-        color: var(--gray-400);
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-
-      /* ── CHECKBOX ACEPTAR ── */
-      .accept-box {
-        border: 2px solid var(--gray-200);
-        border-radius: 12px;
-        padding: 20px 24px;
-        margin-bottom: 28px;
-        transition:
-          border-color 0.2s,
-          background 0.2s;
-      }
-      .accept-box.checked {
-        border-color: var(--green-light);
-        background: #f0fdf4;
-      }
-      .accept-label {
-        display: flex;
-        align-items: flex-start;
-        gap: 14px;
-        cursor: pointer;
-      }
-      .accept-checkbox {
-        width: 22px;
-        height: 22px;
-        flex-shrink: 0;
-        accent-color: var(--green);
-        cursor: pointer;
-        margin-top: 2px;
-      }
-      .accept-text {
-        font-size: 13px;
-        color: var(--gray-700);
-        line-height: 1.6;
-        font-weight: 500;
-      }
-      .accept-text strong {
-        color: var(--gray-900);
-      }
-
-      /* ── TIMESTAMP CHIP ── */
-      .timestamp-chip {
-        display: none;
-        align-items: center;
-        gap: 8px;
-        background: #f0fdf4;
-        border: 1px solid #86efac;
-        border-radius: 8px;
-        padding: 10px 16px;
-        margin-top: 12px;
-        font-size: 12px;
-        color: var(--green);
-        font-weight: 600;
-      }
-      .timestamp-chip.show {
-        display: flex;
-      }
-
-      /* ── BOTONES ── */
-      .btn-primary {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: var(--red);
-        color: var(--white);
-        padding: 14px 32px;
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 700;
-        font-family: "Montserrat", sans-serif;
-        border: none;
-        cursor: pointer;
-        transition:
-          background 0.2s,
-          transform 0.15s,
-          opacity 0.2s;
-        width: 100%;
-      }
-      .btn-primary:hover:not(:disabled) {
-        background: var(--red-dark);
-        transform: translateY(-1px);
-      }
-      .btn-primary:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-        transform: none;
-      }
-      .btn-primary.green {
-        background: var(--green);
-      }
-      .btn-primary.green:hover:not(:disabled) {
-        background: #1b4332;
-      }
-
-      .btn-secondary {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: transparent;
-        color: var(--gray-600);
-        padding: 14px 24px;
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        font-family: "Montserrat", sans-serif;
-        border: 2px solid var(--gray-200);
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .btn-secondary:hover {
-        border-color: var(--gray-400);
-        color: var(--gray-800);
-      }
-
-      .btn-row {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-      .btn-row .btn-primary {
-        flex: 1;
-      }
-
-      /* ── STEP OCULTOS ── */
-      .step-panel {
-        display: none;
-      }
-      .step-panel.active {
-        display: block;
-      }
-
-      /* ── ÉXITO ── */
-      .success-card {
-        background: var(--white);
-        border-radius: 16px;
-        padding: 60px 40px;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-        text-align: center;
-      }
-      .success-icon {
-        width: 88px;
-        height: 88px;
-        background: #f0fdf4;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 28px;
-        animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-      @keyframes pop {
-        0% {
-          transform: scale(0);
-          opacity: 0;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-      .success-card h2 {
-        font-size: 26px;
-        font-weight: 800;
-        color: var(--gray-900);
-        margin-bottom: 12px;
-      }
-      .success-card p {
-        font-size: 14px;
-        color: var(--gray-600);
-        line-height: 1.7;
-        margin-bottom: 32px;
-        max-width: 420px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .success-details {
-        background: var(--gray-50);
-        border: 1px solid var(--gray-200);
-        border-radius: 12px;
-        padding: 20px 24px;
-        margin-bottom: 28px;
-        text-align: left;
-        max-width: 420px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .success-detail-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0;
-        border-bottom: 1px solid var(--gray-200);
-        font-size: 13px;
-      }
-      .success-detail-row:last-child {
-        border-bottom: none;
-      }
-      .success-detail-row .label {
-        color: var(--gray-600);
-        font-weight: 500;
-      }
-      .success-detail-row .value {
-        color: var(--gray-900);
-        font-weight: 700;
-      }
-      .value.green {
-        color: var(--green);
-      }
-
-      /* ── LOADING ── */
-      .loading-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(255, 255, 255, 0.85);
-        z-index: 999;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 16px;
-      }
-      .loading-overlay.show {
-        display: flex;
-      }
-      .spinner {
-        width: 48px;
-        height: 48px;
-        border: 4px solid var(--gray-200);
-        border-top-color: var(--red);
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      .loading-text {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--gray-600);
-      }
-
-      /* ── RESPONSIVE ── */
-      @media (max-width: 600px) {
-        .doc-body {
-          padding: 20px 16px;
-        }
-        .doc-scroll {
-          padding: 20px 16px;
-          height: 340px;
-        }
-        .dni-card {
-          padding: 32px 20px;
-        }
-        .success-card {
-          padding: 40px 20px;
-        }
-        .btn-row {
-          flex-direction: column-reverse;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="firma.css" />
   </head>
   <body>
     <!-- LOADING -->
@@ -675,48 +19,45 @@
     </div>
 
     <!-- HEADER -->
-    <div class="header">
-      <div class="nav-logos">
-        <img
-          src="img/logo-FTCCP.png"
-          alt="Logo FTCCP"
-          style="width: 42px; height: 42px; object-fit: contain"
-        />
+    <header class="firma-header">
+      <div class="firma-header-logos">
+        <img src="img/logo-FTCCP.png" alt="Logo FTCCP" width="42" height="42" />
         <img
           src="img/logo-Capeco.png"
           alt="Logo CAPECO"
-          style="width: 80px; height: 42px; object-fit: contain"
+          width="80"
+          height="42"
         />
       </div>
-      <div class="header-title">
+      <div class="firma-header-title">
         Programa de Becas FONDECAPCC
         <span>Firma digital de documentos</span>
       </div>
-    </div>
+    </header>
 
-    <!-- PROGRESS -->
+    <!-- BARRA DE PROGRESO -->
     <div class="progress-wrap">
       <div class="progress-steps">
-        <div class="step active" id="pStep0">
-          <div class="step-circle">1</div>
-          <div class="step-label">Identificación</div>
+        <div class="progress-step active" id="pStep0">
+          <div class="progress-step-circle">1</div>
+          <div class="progress-step-label">Identificación</div>
         </div>
-        <div class="step" id="pStep1">
-          <div class="step-circle">2</div>
-          <div class="step-label">Convenio</div>
+        <div class="progress-step" id="pStep1">
+          <div class="progress-step-circle">2</div>
+          <div class="progress-step-label">Convenio</div>
         </div>
-        <div class="step" id="pStep2">
-          <div class="step-circle">3</div>
-          <div class="step-label">Reglamento</div>
+        <div class="progress-step" id="pStep2">
+          <div class="progress-step-circle">3</div>
+          <div class="progress-step-label">Reglamento</div>
         </div>
-        <div class="step" id="pStep3">
-          <div class="step-circle">✓</div>
-          <div class="step-label">Completado</div>
+        <div class="progress-step" id="pStep3">
+          <div class="progress-step-circle">✓</div>
+          <div class="progress-step-label">Completado</div>
         </div>
       </div>
     </div>
 
-    <div class="main">
+    <main class="firma-main">
       <!-- ═══ PASO 0: DNI ═══ -->
       <div class="step-panel active" id="panel0">
         <div class="dni-card">
@@ -729,8 +70,9 @@
           </div>
           <h2>Ingresa tu DNI</h2>
           <p>
-            Para comenzar el proceso de firma, ingresa tu número de DNI.<br />Este
-            quedará registrado junto con la fecha y hora exacta de tu firma.
+            Para comenzar el proceso de firma, ingresa tu número de DNI.<br />
+            Este quedará registrado junto con la fecha y hora exacta de tu
+            firma.
           </p>
           <div class="dni-input-wrap">
             <input
@@ -747,7 +89,6 @@
           </div>
           <button
             class="btn-primary"
-            onclick="validarDNI()"
             style="max-width: 320px; margin: 16px auto 0; display: flex"
           >
             Continuar
@@ -761,21 +102,21 @@
       <!-- ═══ PASO 1: CONVENIO ═══ -->
       <div class="step-panel" id="panel1">
         <div class="doc-card">
-          <div class="doc-header">
-            <div class="doc-header-icon">
+          <div class="doc-card-header">
+            <div class="doc-card-header-icon">
               <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24">
                 <path
                   d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"
                 />
               </svg>
             </div>
-            <div class="doc-header-text">
+            <div class="doc-card-header-text">
               <h2>Convenio de Beca</h2>
               <p>Documento 1 de 2 — Lee completamente antes de aceptar</p>
             </div>
           </div>
 
-          <div class="doc-body">
+          <div class="doc-card-body">
             <div class="becario-info">
               <svg width="16" height="16" fill="#9ca3af" viewBox="0 0 24 24">
                 <path
@@ -1226,14 +567,6 @@
                   type="checkbox"
                   class="accept-checkbox"
                   id="checkConvenio"
-                  onchange="
-                    toggleAccept(
-                      'checkConvenio',
-                      'acceptBox1',
-                      'ts1',
-                      'btnConvenio',
-                    )
-                  "
                 />
                 <span class="accept-text">
                   He leído y comprendido íntegramente el
@@ -1259,7 +592,7 @@
             </div>
 
             <div class="btn-row">
-              <button class="btn-secondary" onclick="goTo(0)">
+              <button class="btn-secondary">
                 <svg
                   width="16"
                   height="16"
@@ -1270,12 +603,7 @@
                 </svg>
                 Atrás
               </button>
-              <button
-                class="btn-primary"
-                id="btnConvenio"
-                disabled
-                onclick="goTo(2)"
-              >
+              <button class="btn-primary" id="btnConvenio" disabled>
                 Continuar al Reglamento
                 <svg
                   width="16"
@@ -1294,21 +622,21 @@
       <!-- ═══ PASO 2: REGLAMENTO ═══ -->
       <div class="step-panel" id="panel2">
         <div class="doc-card">
-          <div class="doc-header" style="background: var(--green)">
-            <div class="doc-header-icon">
+          <div class="doc-card-header green">
+            <div class="doc-card-header-icon">
               <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24">
                 <path
                   d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"
                 />
               </svg>
             </div>
-            <div class="doc-header-text">
+            <div class="doc-card-header-text">
               <h2>Reglamento del Programa</h2>
               <p>Documento 2 de 2 — Lee completamente antes de aceptar</p>
             </div>
           </div>
 
-          <div class="doc-body">
+          <div class="doc-card-body">
             <div class="becario-info">
               <svg width="16" height="16" fill="#9ca3af" viewBox="0 0 24 24">
                 <path
@@ -1994,14 +1322,6 @@
                   type="checkbox"
                   class="accept-checkbox"
                   id="checkReglamento"
-                  onchange="
-                    toggleAccept(
-                      'checkReglamento',
-                      'acceptBox2',
-                      'ts2',
-                      'btnReglamento',
-                    )
-                  "
                 />
                 <span class="accept-text">
                   He leído y comprendido íntegramente el
@@ -2026,7 +1346,7 @@
             </div>
 
             <div class="btn-row">
-              <button class="btn-secondary" onclick="goTo(1)">
+              <button class="btn-secondary">
                 <svg
                   width="16"
                   height="16"
@@ -2037,12 +1357,7 @@
                 </svg>
                 Atrás
               </button>
-              <button
-                class="btn-primary green"
-                id="btnReglamento"
-                disabled
-                onclick="enviarFirma()"
-              >
+              <button class="btn-primary green" id="btnReglamento" disabled>
                 Firmar y Enviar
                 <svg
                   width="16"
@@ -2099,219 +1414,45 @@
             </div>
           </div>
 
-          <p style="font-size: 12px; color: var(--gray-400); margin-bottom: 0">
+          <div class="btn-download-row">
+            <button class="btn-pdf" data-imprimir="convenio">
+              <svg
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"
+                />
+              </svg>
+              Descargar Convenio
+            </button>
+            <button class="btn-pdf" data-imprimir="reglamento">
+              <svg
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"
+                />
+              </svg>
+              Descargar Reglamento
+            </button>
+          </div>
+
+          <p class="success-contact">
             Contacto: <strong>becas@fondecapcc.pe</strong> · WhatsApp:
             <strong>962 323 888</strong>
           </p>
         </div>
       </div>
-    </div>
-    <!-- /main -->
+    </main>
 
-    <script>
-      const BECARIOS = {
-        71100379: "Aaron Josue Matute Escobedo",
-        46064667: "Albert Adrian Guerrero Zapata",
-        41249117: "Alberto Sanchez Fernandez",
-        44633264: "Alexander Berrocal Salcedo",
-        75937415: "Alindor Portal Casquin",
-        74954081: "Álvaro Pucho Pucho",
-        42523462: "Belisario Lima Sullca",
-        61412254: "Brando Javier Iñape Castillo",
-        48073422: "Carlos Andrés Atoche Botton",
-        71353485: "Charles Lima Encarnacion",
-        44353126: "Denis Junior Saucedo Hernández",
-        42438832: "Edgar Alfredo Barrientos Urbano",
-        45022392: "Edgar Wilder Ponce Sobero",
-        9364719: "Edgard Miguel Zamora Irrazabal",
-        45317389: "Edson Flores Santoyo",
-        44628553: "Edwin Cristhian Ortega Vivar",
-        75781356: "Emerson Huaman Chavez",
-        72917298: "Enrique Neptali Nuñez Flores",
-        61123969: "Fabian Alberto Sanchez Corrales",
-        48407793: "Fidel Gallegos Ramos",
-        74379918: "Flor Yesenia Mamani Barrionuevo",
-        42013163: "Fredhy Alberto Malpartida Montecillo",
-        72907953: "Gerson Fharid Torres Llantoy",
-        47129727: "Grider Jarvin Alvarado Soto",
-        48111233: "Harold Smith Cruz Castillo",
-        70509536: "Heberth Eduardo Espinoza Chiclla",
-        43871643: "Hilda Elizares Pilpe",
-        41431806: "Jimmy Rico Bazan",
-        72611040: "Job Cusquisiban Torres",
-        74128360: "Juan Anthony Cueva Moreno",
-        76287516: "Juan Carlos Casimiro Pascual",
-        71756475: "Juan Carlos Llaullipoma Carhuamanta",
-        71541786: "Kiara Estefany Karolina Espino Solier",
-        80502545: "Lizandro Raul Correa Baldeon",
-        44174866: "Luis Enrique Asmad Gerónimo",
-        47631507: "Luis Jesús Pinedo Camilo",
-        46495453: "Marino Melendez Lopez",
-        72428086: "Michael Castro Vilchez",
-        45040109: "Mike Esteban Villanueva Fernandez",
-        72232881: "Wilber Huillca Sueldo",
-        73581729: "Wily Arizaca Choquehuayta",
-        72855428: "Yeferson Yohan Ayala Espinoza",
-        75987723: "Yerson Henry Ayamamani Gonzales",
-        45489461: "Yinmy Puerta Arone",
-        76445300: "Yonathan Smith Rivera Alama",
-      };
-      // ── Estado global ──
-      const state = {
-        dni: "",
-        nombre: "",
-        ts_convenio: "",
-        ts_reglamento: "",
-      };
+    <div id="printArea" style="display: none"></div>
 
-      // URL del Apps Script — REEMPLAZAR con tu URL desplegada
-      const APPS_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycby5dxRv3jO4BGW-Z0UVIzppXaf0zF3y-dLsBQd9h6sul16qPH-WnJGey_8BY0GzzslT_A/exec";
-
-      // ── Navegación ──
-      function goTo(step) {
-        document.querySelectorAll(".step-panel").forEach((p, i) => {
-          p.classList.toggle("active", i === step);
-        });
-        document.querySelectorAll(".step").forEach((s, i) => {
-          s.classList.remove("active", "done");
-          if (i < step) s.classList.add("done");
-          else if (i === step) s.classList.add("active");
-        });
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
-      // ── Validar DNI ──
-      function validarDNI() {
-        const val = document.getElementById("dniInput").value.trim();
-        const err = document.getElementById("dniError");
-        const inp = document.getElementById("dniInput");
-
-        if (!/^\d{7,8}$/.test(val)) {
-          inp.classList.add("error");
-          err.textContent = "Ingresa un DNI válido de 8 dígitos.";
-          err.classList.add("show");
-          return;
-        }
-
-        const nombre = BECARIOS[val];
-        if (!nombre) {
-          inp.classList.add("error");
-          err.textContent =
-            "Este DNI no se encuentra en la lista de becarios seleccionados.";
-          err.classList.add("show");
-          return;
-        }
-
-        inp.classList.remove("error");
-        err.classList.remove("show");
-        state.dni = val;
-        state.nombre = nombre;
-
-        document.getElementById("dniBadge1").textContent = val;
-        document.getElementById("dniBadge2").textContent = val;
-        document.getElementById("dniConvenio").textContent = val;
-        document.getElementById("successDNI").textContent = val;
-        document.getElementById("successNombre").textContent = nombre;
-        goTo(1);
-      }
-
-      // Solo números en DNI
-      document
-        .getElementById("dniInput")
-        .addEventListener("input", function () {
-          this.value = this.value.replace(/\D/g, "");
-        });
-      document
-        .getElementById("dniInput")
-        .addEventListener("keydown", function (e) {
-          if (e.key === "Enter") validarDNI();
-        });
-
-      // ── Scroll indicator ──
-      function checkScroll(scrollId, indicatorId) {
-        const el = document.getElementById(scrollId);
-        const ind = document.getElementById(indicatorId);
-        const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 30;
-        ind.classList.toggle("hidden", atBottom);
-      }
-
-      // ── Toggle aceptar ──
-      function toggleAccept(checkId, boxId, tsId, btnId) {
-        const checked = document.getElementById(checkId).checked;
-        const box = document.getElementById(boxId);
-        const ts = document.getElementById(tsId);
-        const btn = document.getElementById(btnId);
-        const tsText = document.getElementById(tsId + "Text");
-
-        box.classList.toggle("checked", checked);
-        btn.disabled = !checked;
-
-        if (checked) {
-          const now = new Date();
-          const formatted = formatDate(now);
-          tsText.textContent = "Aceptado el " + formatted;
-          ts.classList.add("show");
-
-          // Guardar timestamp en state
-          if (checkId === "checkConvenio")
-            state.ts_convenio = now.toISOString();
-          else state.ts_reglamento = now.toISOString();
-
-          // Actualizar éxito
-          if (checkId === "checkConvenio")
-            document.getElementById("successTs1").textContent = formatted;
-          else document.getElementById("successTs2").textContent = formatted;
-        } else {
-          ts.classList.remove("show");
-          if (checkId === "checkConvenio") state.ts_convenio = "";
-          else state.ts_reglamento = "";
-        }
-      }
-
-      function formatDate(d) {
-        return (
-          d.toLocaleDateString("es-PE", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-          }) +
-          " " +
-          d.toLocaleTimeString("es-PE", {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-          })
-        );
-      }
-
-      // ── Enviar firma ──
-      async function enviarFirma() {
-        const overlay = document.getElementById("loadingOverlay");
-        overlay.classList.add("show");
-
-        const payload = {
-          dni: state.dni,
-          nombre: state.nombre,
-          ts_convenio: state.ts_convenio,
-          ts_reglamento: state.ts_reglamento,
-          ts_envio: new Date().toISOString(),
-        };
-
-        try {
-          await fetch(APPS_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
-        } catch (e) {
-          console.error("Error al enviar:", e);
-        }
-
-        overlay.classList.remove("show");
-        goTo(3);
-      }
-    </script>
+    <script src="firma.js"></script>
   </body>
 </html>

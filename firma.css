@@ -1,0 +1,847 @@
+/* =============================================
+   FIRMA CONVENIO — firma.css
+   Estilos exclusivos del flujo de firma digital
+   ============================================= */
+
+/* ----- Variables propias de firma ----- */
+:root {
+  --red: #d2292a;
+  --red-dark: #a81f20;
+  --green: #2d6a4f;
+  --green-light: #52b788;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --white: #ffffff;
+  --font: "Montserrat", sans-serif;
+  --font-doc: "Lora", serif;
+}
+
+/* ----- Reset base ----- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--gray-50);
+  color: var(--gray-800);
+  min-height: 100vh;
+}
+
+/* =============================================
+   HEADER DE FIRMA
+   ============================================= */
+.firma-header {
+  background: var(--white);
+  border-bottom: 3px solid var(--red);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+.firma-header-logos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.firma-header-logos img {
+  object-fit: contain;
+  display: block;
+}
+
+.firma-header-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.3;
+}
+
+.firma-header-title span {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-400);
+  margin-top: 1px;
+}
+
+/* =============================================
+   BARRA DE PROGRESO
+   ============================================= */
+.progress-wrap {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 20px 24px;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  position: relative;
+}
+
+.progress-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--gray-200);
+  z-index: 0;
+  transition: background 0.4s;
+}
+
+.progress-step.done:not(:last-child)::after {
+  background: var(--green-light);
+}
+
+.progress-step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--gray-200);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-400);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+
+.progress-step.active .progress-step-circle {
+  border-color: var(--red);
+  background: var(--red);
+  color: var(--white);
+}
+
+.progress-step.done .progress-step-circle {
+  border-color: var(--green-light);
+  background: var(--green-light);
+  color: var(--white);
+}
+
+.progress-step-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-align: center;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.progress-step.active .progress-step-label {
+  color: var(--red);
+}
+.progress-step.done .progress-step-label {
+  color: var(--green);
+}
+
+/* =============================================
+   MAIN / PANELES
+   ============================================= */
+.firma-main {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 32px 16px 60px;
+}
+
+.step-panel {
+  display: none;
+}
+
+.step-panel.active {
+  display: block;
+}
+
+/* =============================================
+   PASO 0: IDENTIFICACIÓN DNI
+   ============================================= */
+.dni-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 48px 40px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  text-align: center;
+}
+
+.dni-icon {
+  width: 72px;
+  height: 72px;
+  background: #fef2f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.dni-card h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+
+.dni-card p {
+  font-size: 14px;
+  color: var(--gray-600);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.dni-input-wrap {
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto 12px;
+}
+
+.dni-input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--font);
+  border: 2px solid var(--gray-200);
+  border-radius: 10px;
+  text-align: center;
+  letter-spacing: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.dni-input:focus {
+  border-color: var(--red);
+}
+.dni-input.error {
+  border-color: #ef4444;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 6px;
+  display: none;
+}
+
+.error-msg.show {
+  display: block;
+}
+
+/* =============================================
+   DOCUMENTO CARD
+   ============================================= */
+.doc-card {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+.doc-card-header {
+  background: var(--red);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.doc-card-header.green {
+  background: var(--green);
+}
+
+.doc-card-header-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.doc-card-header-text h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.doc-card-header-text p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 3px;
+}
+
+.doc-card-body {
+  padding: 32px;
+}
+
+/* ----- Info del becario ----- */
+.becario-info {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--gray-600);
+}
+
+.dni-badge {
+  background: var(--red);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+/* =============================================
+   SCROLL DE DOCUMENTO
+   ============================================= */
+.doc-scroll-wrap {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.doc-scroll {
+  height: 420px;
+  overflow-y: auto;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 28px 32px;
+  font-family: var(--font-doc);
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--gray-800);
+  background: #fffdf9;
+  scroll-behavior: smooth;
+}
+
+.doc-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.doc-scroll::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: 3px;
+}
+.doc-scroll::-webkit-scrollbar-thumb {
+  background: var(--gray-400);
+  border-radius: 3px;
+}
+
+/* Tipografía interna del documento */
+.doc-scroll h1 {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--red);
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+}
+
+.doc-scroll h2 {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin: 20px 0 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.doc-scroll h3 {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-700);
+  margin: 16px 0 6px;
+}
+
+.doc-scroll p {
+  margin-bottom: 10px;
+}
+.doc-scroll ul {
+  margin: 8px 0 12px 20px;
+}
+.doc-scroll ul li {
+  margin-bottom: 4px;
+}
+
+/* Listas numeradas personalizadas dentro del scroll */
+.doc-scroll ol {
+  margin: 8px 0 12px 0;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: item;
+}
+
+.doc-scroll ol li {
+  counter-increment: item;
+  display: table;
+  margin-bottom: 6px;
+  text-align: justify;
+}
+
+.doc-scroll ol li::before {
+  content: counter(item) ".";
+  display: table-cell;
+  padding-right: 10px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* Indicador de scroll */
+.scroll-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 253, 249, 1),
+    rgba(255, 253, 249, 0)
+  );
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+}
+
+.scroll-indicator span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* =============================================
+   CHECKBOX DE ACEPTACIÓN
+   ============================================= */
+.accept-box {
+  border: 2px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.accept-box.checked {
+  border-color: var(--green-light);
+  background: #f0fdf4;
+}
+
+.accept-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.accept-checkbox {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  accent-color: var(--green);
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.accept-text {
+  font-size: 13px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.accept-text strong {
+  color: var(--gray-900);
+}
+
+/* ----- Timestamp chip ----- */
+.timestamp-chip {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.timestamp-chip.show {
+  display: flex;
+}
+
+/* =============================================
+   BOTONES
+   ============================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--red);
+  color: var(--white);
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font);
+  border: none;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.15s,
+    opacity 0.2s;
+  width: 100%;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--red-dark);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary.green {
+  background: var(--green);
+}
+.btn-primary.green:hover:not(:disabled) {
+  background: #1b4332;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--gray-600);
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font);
+  border: 2px solid var(--gray-200);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gray-400);
+  color: var(--gray-800);
+}
+
+.btn-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gray-800);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-pdf:hover {
+  background: var(--gray-700);
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-row .btn-primary {
+  flex: 1;
+}
+
+.btn-download-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+/* =============================================
+   PASO 3: ÉXITO
+   ============================================= */
+.success-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 60px 40px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  text-align: center;
+}
+
+.success-icon {
+  width: 88px;
+  height: 88px;
+  background: #f0fdf4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-card h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin-bottom: 12px;
+}
+
+.success-card > p {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.success-details {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 0 auto 28px;
+  text-align: left;
+  max-width: 420px;
+}
+
+.success-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 13px;
+}
+
+.success-detail-row:last-child {
+  border-bottom: none;
+}
+
+.success-detail-row .label {
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.success-detail-row .value {
+  color: var(--gray-900);
+  font-weight: 700;
+}
+
+.value.green {
+  color: var(--green);
+}
+
+.success-contact {
+  font-size: 12px;
+  color: var(--gray-400);
+  margin-bottom: 0;
+}
+
+/* =============================================
+   LOADING OVERLAY
+   ============================================= */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loading-overlay.show {
+  display: flex;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--gray-200);
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+/* =============================================
+   PRINT
+   ============================================= */
+@media print {
+  body > *:not(#printArea) {
+    display: none !important;
+  }
+
+  #printArea {
+    display: block !important;
+    font-family: "Times New Roman", serif;
+    font-size: 12pt;
+    line-height: 1.8;
+    color: #000;
+    padding: 2cm;
+  }
+
+  #printArea h1 {
+    font-size: 14pt;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #printArea h2 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin: 16px 0 8px;
+  }
+  #printArea h3 {
+    font-size: 11pt;
+    font-weight: bold;
+    margin: 12px 0 6px;
+  }
+
+  #printArea ol {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+    counter-reset: item;
+  }
+
+  #printArea ol li {
+    counter-increment: item;
+    display: table;
+    margin-bottom: 6px;
+  }
+
+  #printArea ol li::before {
+    content: counter(item) ".";
+    display: table-cell;
+    padding-right: 8px;
+  }
+
+  #printArea .firma-block {
+    margin-top: 40px;
+    border-top: 1px solid #000;
+    padding-top: 20px;
+  }
+
+  #printArea .firma-dato {
+    margin-bottom: 8px;
+  }
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 600px) {
+  .doc-card-body {
+    padding: 20px 16px;
+  }
+  .doc-scroll {
+    padding: 20px 16px;
+    height: 340px;
+  }
+  .dni-card {
+    padding: 32px 20px;
+  }
+  .success-card {
+    padding: 40px 20px;
+  }
+  .btn-row {
+    flex-direction: column-reverse;
+  }
+}
