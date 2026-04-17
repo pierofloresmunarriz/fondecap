@@ -26,7 +26,6 @@ const BECARIOS = {
   72917298: "Enrique Neptali Nuñez Flores",
   61123969: "Fabian Alberto Sanchez Corrales",
   48407793: "Fidel Gallegos Ramos",
-  74379918: "Flor Yesenia Mamani Barrionuevo",
   42013163: "Fredhy Alberto Malpartida Montecillo",
   72907953: "Gerson Fharid Torres Llantoy",
   47129727: "Grider Jarvin Alvarado Soto",
@@ -47,10 +46,10 @@ const BECARIOS = {
   45040109: "Mike Esteban Villanueva Fernandez",
   72232881: "Wilber Huillca Sueldo",
   73581729: "Wily Arizaca Choquehuayta",
-  72855428: "Yeferson Yohan Ayala Espinoza",
   75987723: "Yerson Henry Ayamamani Gonzales",
   45489461: "Yinmy Puerta Arone",
   76445300: "Yonathan Smith Rivera Alama",
+  48905624: "Nick Romero Chavez"
 };
 
 // Estado global de la sesión
