@@ -46,6 +46,7 @@ const BECARIOS = {
   45040109: "Mike Esteban Villanueva Fernandez",
   72232881: "Wilber Huillca Sueldo",
   73581729: "Wily Arizaca Choquehuayta",
+  72855428: "Yeferson Yohan Ayala Espinoza",
   75987723: "Yerson Henry Ayamamani Gonzales",
   45489461: "Yinmy Puerta Arone",
   76445300: "Yonathan Smith Rivera Alama",
