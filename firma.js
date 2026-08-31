@@ -3,55 +3,7 @@
    ============================================= */
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycby8Q2C6TvsTjjmp7TLWzGsDvMlxyletRYfPqnnq31VBaA4dvRo6S_NZW5n8KzLjG1XeMA/exec";
-
-const BECARIOS = {
-  71100379: "Aaron Josue Matute Escobedo",
-  46064667: "Albert Adrian Guerrero Zapata",
-  41249117: "Alberto Sanchez Fernandez",
-  44633264: "Alexander Berrocal Salcedo",
-  75937415: "Alindor Portal Casquin",
-  74954081: "Álvaro Pucho Pucho",
-  42523462: "Belisario Lima Sullca",
-  61412254: "Brando Javier Iñape Castillo",
-  48073422: "Carlos Andrés Atoche Botton",
-  71353485: "Charles Lima Encarnacion",
-  44353126: "Denis Junior Saucedo Hernández",
-  42438832: "Edgar Alfredo Barrientos Urbano",
-  45022392: "Edgar Wilder Ponce Sobero",
-  9364719: "Edgard Miguel Zamora Irrazabal",
-  45317389: "Edson Flores Santoyo",
-  44628553: "Edwin Cristhian Ortega Vivar",
-  75781356: "Emerson Huaman Chavez",
-  72917298: "Enrique Neptali Nuñez Flores",
-  61123969: "Fabian Alberto Sanchez Corrales",
-  48407793: "Fidel Gallegos Ramos",
-  42013163: "Fredhy Alberto Malpartida Montecillo",
-  72907953: "Gerson Fharid Torres Llantoy",
-  47129727: "Grider Jarvin Alvarado Soto",
-  48111233: "Harold Smith Cruz Castillo",
-  70509536: "Heberth Eduardo Espinoza Chiclla",
-  43871643: "Hilda Elizares Pilpe",
-  41431806: "Jimmy Rico Bazan",
-  72611040: "Job Cusquisiban Torres",
-  74128360: "Juan Anthony Cueva Moreno",
-  76287516: "Juan Carlos Casimiro Pascual",
-  71756475: "Juan Carlos Llaullipoma Carhuamanta",
-  71541786: "Kiara Estefany Karolina Espino Solier",
-  80502545: "Lizandro Raul Correa Baldeon",
-  44174866: "Luis Enrique Asmad Gerónimo",
-  47631507: "Luis Jesús Pinedo Camilo",
-  46495453: "Marino Melendez Lopez",
-  72428086: "Michael Castro Vilchez",
-  45040109: "Mike Esteban Villanueva Fernandez",
-  72232881: "Wilber Huillca Sueldo",
-  73581729: "Wily Arizaca Choquehuayta",
-  72855428: "Yeferson Yohan Ayala Espinoza",
-  75987723: "Yerson Henry Ayamamani Gonzales",
-  45489461: "Yinmy Puerta Arone",
-  76445300: "Yonathan Smith Rivera Alama",
-  48905624: "Nick Romero Chavez"
-};
+  "https://script.google.com/macros/s/AKfycby9OaUtOsnAfHw2kqGiK4yBRxbdjrlB_QqeE-hlQ6ePRT8QLM7O3cd9NINJgwiuYzL9/exec";
 
 // Estado global de la sesión
 const state = {
@@ -95,22 +47,42 @@ function goTo(step) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// ── Validación y verificación del DNI ──────────────────────
+// ── Validación y verificación del DNI (100% contra el servidor) ──
 async function validarDNI() {
   const inp = el("dniInput");
   const err = el("dniError");
   const btn = document.querySelector("#panel0 .btn-primary");
   const val = inp.value.trim();
 
-  // Validación de formato
+  // Validación de formato (solo forma, no autorización)
   if (!/^\d{7,8}$/.test(val)) {
     mostrarError(inp, err, "Ingresa un DNI válido de 8 dígitos.");
     return;
   }
 
-  // Validación contra lista de becarios
-  const nombre = BECARIOS[val];
-  if (!nombre) {
+  limpiarError(inp, err);
+  btn.textContent = "Verificando...";
+  btn.disabled = true;
+
+  let data;
+  try {
+    const res = await fetch(`${APPS_SCRIPT_URL}?dni=${val}`, {
+      redirect: "follow",
+    });
+    data = await res.json();
+  } catch (e) {
+    resetBtn(btn);
+    mostrarError(
+      inp,
+      err,
+      "No se pudo verificar tu DNI en este momento. Intenta nuevamente en unos segundos.",
+    );
+    return;
+  }
+
+  resetBtn(btn);
+
+  if (!data || !data.autorizado) {
     mostrarError(
       inp,
       err,
@@ -119,27 +91,13 @@ async function validarDNI() {
     return;
   }
 
-  // Verificar en el servidor si ya firmó
-  btn.textContent = "Verificando...";
-  btn.disabled = true;
+  const nombre = data.nombre || "";
 
-  try {
-    const res = await fetch(`${APPS_SCRIPT_URL}?dni=${val}`, {
-      redirect: "follow",
-    });
-    const data = await res.json();
-
-    if (data.firmado) {
-      manejarYaFirmado(val, nombre, data);
-      resetBtn(btn);
-      return;
-    }
-  } catch {
-    // Si falla la consulta al servidor, permitimos continuar
+  if (data.firmado) {
+    manejarYaFirmado(val, nombre, data);
+    return;
   }
 
-  resetBtn(btn);
-  limpiarError(inp, err);
   iniciarFlujoNuevo(val, nombre);
 }
 
