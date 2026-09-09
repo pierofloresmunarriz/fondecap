@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados — Programa de Becas FONDECAPCC</title>
+    <link rel="icon" type="image/png" href="img/logo-FTCCP.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="firma.css" />
+    <link rel="stylesheet" href="resultados.css" />
+  </head>
+  <body>
+    <!-- LOADING -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <div class="loading-text">Consultando resultado...</div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="firma-header">
+      <div class="firma-header-logos">
+        <img src="img/logo-FTCCP.png" alt="Logo FTCCP" width="42" height="42" />
+        <img
+          src="img/logo-Capeco.png"
+          alt="Logo CAPECO"
+          width="80"
+          height="42"
+        />
+      </div>
+      <div class="firma-header-title">
+        Programa de Becas FONDECAPCC
+        <span>Consulta de resultados</span>
+      </div>
+    </header>
+
+    <main class="firma-main">
+      <!-- ═══ PASO 0: DNI ═══ -->
+      <div class="step-panel active" id="panel0">
+        <div class="dni-card">
+          <div class="dni-icon">
+            <svg width="32" height="32" fill="#d2292a" viewBox="0 0 24 24">
+              <path
+                d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"
+              />
+            </svg>
+          </div>
+          <h2>Consulta tu resultado</h2>
+          <p>
+            Ingresa tu número de DNI para ver el resultado de tu postulación
+            a la Beca FONDECAPCC.
+          </p>
+          <div class="dni-input-wrap">
+            <input
+              type="text"
+              id="dniInput"
+              class="dni-input"
+              placeholder="00000000"
+              maxlength="8"
+              inputmode="numeric"
+            />
+            <div class="error-msg" id="dniError">
+              Ingresa un DNI válido de 8 dígitos.
+            </div>
+          </div>
+          <button
+            class="btn-primary"
+            style="max-width: 320px; margin: 16px auto 0; display: flex"
+          >
+            Ver resultado
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══ PASO 1: RESULTADO ═══ -->
+      <div class="step-panel" id="panel1">
+        <div class="success-card">
+          <div class="success-icon" id="resultIcon"></div>
+          <h2 id="resultTitle">—</h2>
+          <div class="result-badge" id="resultBadge"></div>
+
+          <div class="success-details">
+            <div class="success-detail-row">
+              <span class="label">DNI</span>
+              <span class="value" id="resDni">—</span>
+            </div>
+            <div class="success-detail-row">
+              <span class="label">Nombres y Apellidos</span>
+              <span class="value" id="resNombre">—</span>
+            </div>
+            <div class="success-detail-row" id="rowCarrera">
+              <span class="label">Carrera</span>
+              <span class="value" id="resCarrera">—</span>
+            </div>
+            <div class="success-detail-row" id="rowHorario">
+              <span class="label">Horario</span>
+              <span class="value" id="resHorario">—</span>
+            </div>
+          </div>
+
+          <button class="btn-secondary" id="btnOtraConsulta">
+            Consultar otro DNI
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="resultados.js"></script>
+  </body>
+</html>

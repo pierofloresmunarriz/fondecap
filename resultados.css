@@ -1,0 +1,46 @@
+/* =============================================
+   RESULTADOS — resultados.css
+   Estilos exclusivos de la consulta de resultados
+   (complementa firma.css: variables, header, dni-card,
+   success-card, botones, loading, etc.)
+   ============================================= */
+
+.result-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  margin: 0 auto 28px;
+}
+
+.result-badge.selected {
+  background: #f0fdf4;
+  color: var(--green);
+  border: 2px solid var(--green-light);
+}
+
+.result-badge.not-selected {
+  background: #fef2f2;
+  color: var(--red-dark);
+  border: 2px solid var(--red);
+}
+
+.success-icon.not-selected {
+  background: #fef2f2;
+}
+
+#btnOtraConsulta {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* .success-detail-row ya define display:flex en firma.css, que pisa el
+   display:none por defecto de [hidden]; se refuerza aquí con mayor
+   especificidad para poder ocultar Carrera/Horario cuando no aplica. */
+.success-detail-row[hidden] {
+  display: none;
+}
